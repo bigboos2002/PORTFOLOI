@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محفظتي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        header {
+            background: #1f1f1f;
+            color: #00bcd4;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1s;
+        }
+
+        h1, h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: #00bcd4;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            animation: slideInUp 1s ease-out;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #dddddd;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #1a1a1a;
+            padding: 0.5rem 0;
+            animation: fadeInUp 1s;
+        }
+
+        nav a {
+            color: #00bcd4;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .about {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .about h1 {
+            margin-bottom: 1rem;
+            color: #00bcd4;
+            animation: zoomIn 1s;
+        }
+
+        footer {
+            text-align: center;
+            background: #1f1f1f;
+            color: #00bcd4;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #1a1a1a;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 5px;
+            animation: fadeInRight 1s;
+        }
+
+        .language-selector select {
+            background-color: #1a1a1a;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .language-selector option {
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        .language-selector img {
+            width: 20px;
+            height: 15px;
+            margin-left: 5px;
+        }
+
+        .images-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .images-container .image {
+            position: relative;
+            cursor: pointer;
+            animation: bounceIn 1s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .images-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .images-container img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(0, 188, 212, 0.6);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* تأثير الضوء الدائري حول الصورة */
+        .images-container img {
+            box-shadow: 0 0 15px 5px rgba(0, 188, 212, 0.7); /* الإضاءة حول الصورة */
+            transition: all 0.4s ease-in-out;
+        }
+
+        .images-container img:hover {
+            box-shadow: 0 0 25px 10px rgba(0, 188, 212, 1);
+            transform: scale(1.1);
+        }
+
+        .shap-overlay {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin-top: -30px;
+            text-align: left;
+            position: relative;
+            color: #333;
+            animation: fadeIn 1s;
+        }
+
+        .shap-overlay h3 {
+            color: #00bcd4;
+            margin-bottom: 10px;
+        }
+
+        .shap-overlay p {
+            color: #333;
+            font-size: 16px;
+        }
+
+        .contact {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            margin-top: 2rem;
+            animation: fadeIn 1s;
+        }
+
+        .contact h2 {
+            color: #00bcd4;
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .contact a {
+            color: #00bcd4;
+            text-decoration: none;
+        }
+
+        .cv-btn {
+            display: inline-block;
+            background-color: #00bcd4;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 2rem;
+            transition: background-color 0.3s ease;
+            position: fixed;
+            bottom: 40px;
+            right: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            animation: heartBeat 1s infinite;
+        }
+
+        .cv-btn:hover {
+            background-color: #00a1b4;
+        }
+
+        /* Added animations for text */
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            0% { transform: translateY(100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            20% { transform: scale(1.1); }
+            40% { transform: scale(1); }
+            60% { transform: scale(1.1); }
+            80% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body lang="ar">
+    <div class="language-selector">
+        <span>اختر اللغة</span>
+        <select onchange="changeLanguage(this.value)">
+            <option value="ar" selected>العربية</option>
+            <option value="en">English</option>
+            <option value="ru">Русский</option>
+        </select>
+    </div>
+
+    <header>
+        <h1 id="title">مرحبًا بك في محفظتي</h1>
+        <p id="description">اكتشف عملي ومهاراتي</p>
+    </header>
+
+    <nav>
+        <a href="#about" id="about-link">عنّي</a>
+        <a href="#contact" id="contact-link">اتصل بي</a>
+    </nav>
+
+    <div class="container">
+        <section id="about" class="about">
+            <h1 id="about-title">عنّي</h1>
+            <p id="about-text">أنا مصمم ومطور شغوف قادر على إنشاء حلول فريدة وفعالة. هدفي هو دمج الإبداع والوظائف في جميع مشاريعي.</p>
+        </section>
+
+        <div class="images-container">
+            <div class="image">
+                <a href="https://linktr.ee/GraphicDesignerw" target="_blank">
+                    <img src="https://scontent.ftlm1-2.fna.fbcdn.net/v/t39.30808-6/469891395_122106962570660711_6698525726725661191_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=he-9NgerAOAQ7kNvgF8a80d&_nc_zt=23&_nc_ht=scontent.ftlm1-2.fna&_nc_gid=A1ctx0w206vuqR4zlv9YU6Y&oh=00_AYAtGMeuSCmD5JqKc9btuYeF1a18qLSrJ0073KIz7JIaCQ&oe=6779D137" alt="مصمم جرافيك">
+                </a>
+            </div>
+            <div class="image">
+                <a href="https://linktr.ee/GraphicDesignerw" target="_blank">
+                    <img src="https://scontent.ftlm1-2.fna.fbcdn.net/v/t39.30808-6/444481523_983365080081280_4611924480765887100_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=czq0B-7P1tYQ7kNvgE7t3HB&_nc_zt=23&_nc_ht=scontent.ftlm1-2.fna&_nc_gid=Au3jtvylf3c1R7YuLVfCvrI&oh=00_AYApV_138rkZUs2o4B5ppdF4JtQ_UP5JDXiyT6mIzs3dgA&oe=6779EC34" alt="صورة جديدة">
+                </a>
+            </div>
+        </div>
+
+        <div class="shap-overlay">
+            <h3>تفاصيل إضافية</h3>
+            <p>هذه هي صورة محفظتي التي تعرض بعض من أعمالي الرائعة. دعونا نكتشف كيف يمكنني مساعدتك في مشاريعك القادمة!</p>
+        </div>
+
+        <section id="contact" class="contact">
+            <h2>اتصل بي</h2>
+            <p>هل ترغب في العمل معي؟ تواصل معي للحصول على الاستشارة.</p>
+            <a href="mailto:your-email@example.com">البريد الإلكتروني</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 محفظتي. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <button class="cv-btn" onclick="window.close()">إغلاق الصفحة</button>
+
+    <script>
+        function changeLanguage(language) {
+            var title = document.getElementById('title');
+            var description = document.getElementById('description');
+            var aboutTitle = document.getElementById('about-title');
+            var aboutText = document.getElementById('about-text');
+            var aboutLink = document.getElementById('about-link');
+            var contactLink = document.getElementById('contact-link');
+
+            if (language === 'ar') {
+                title.innerHTML = 'مرحبًا بك في محفظتي';
+                description.innerHTML = 'اكتشف عملي ومهاراتي';
+                aboutTitle.innerHTML = 'عنّي';
+                aboutText.innerHTML = 'أنا مصمم ومطور شغوف قادر على إنشاء حلول فريدة وفعالة. هدفي هو دمج الإبداع والوظائف في جميع مشاريعي.';
+                aboutLink.innerHTML = 'عنّي';
+                contactLink.innerHTML = 'اتصل بي';
+            } else if (language === 'en') {
+                title.innerHTML = 'Welcome to My Portfolio';
+                description.innerHTML = 'Discover my work and skills';
+                aboutTitle.innerHTML = 'About Me';
+                aboutText.innerHTML = 'I am a passionate designer and developer, capable of creating unique and effective solutions. My goal is to merge creativity and functionality in all my projects.';
+                aboutLink.innerHTML = 'About Me';
+                contactLink.innerHTML = 'Contact Me';
+            } else if (language === 'ru') {
+                title.innerHTML = 'Добро пожаловать в моё портфолио';
+                description.innerHTML = 'Откройте для себя мою работу и навыки';
+                aboutTitle.innerHTML = 'Обо мне';
+                aboutText.innerHTML = 'Я страстный дизайнер и разработчик, способный создавать уникальные и эффективные решения. Моя цель - объединить креативность и функциональность в каждом проекте.';
+                aboutLink.innerHTML = 'Обо мне';
+                contactLink.innerHTML = 'Свяжитесь со мной';
+            }
+        }
+    </script>
+</body>
+</html> 
